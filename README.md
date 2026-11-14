@@ -1,4 +1,16 @@
-# Total.js Code app
+<p align="center"><img src="src/icon.png" width="128" height="128" alt="Total.js Code app icon" /></p>
+
+<h1 align="center">Total.js Code app</h1>
+
+<p align="center">
+  <a href="https://github.com/totaljs-es/code-app/releases/latest"><img src="https://img.shields.io/github/v/release/totaljs-es/code-app?label=version&color=f26d21" alt="Latest version" /></a>
+  <a href="https://github.com/totaljs-es/code-app/releases"><img src="https://img.shields.io/github/downloads/totaljs-es/code-app/total?color=2ea44f" alt="Downloads" /></a>
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux-0078d4" alt="Windows and Linux" />
+  <img src="https://img.shields.io/badge/arch-x64%20%7C%20ARM64-555" alt="x64 and ARM64" />
+  <a href="https://tauri.app"><img src="https://img.shields.io/badge/built%20with-Tauri%202-24c8db?logo=tauri&logoColor=white" alt="Built with Tauri 2" /></a>
+  <a href="https://github.com/totaljs-es/code-app/actions/workflows/ci.yml"><img src="https://github.com/totaljs-es/code-app/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/totaljs-es/code-app" alt="MIT license" /></a>
+</p>
 
 Your [Total.js Code](https://github.com/totaljs/code) instances in an app of their own, for **Windows** and **Linux**: each instance opens in a window of its own, and Code keeps a local copy of its files in the folder you choose. Built with Tauri: a light installer of a few megabytes that uses the web view of the system. On the Mac and iPad, the app is [TotalCode](https://totaldesktop.totaljs.es/totalcode/), part of TotalDesktop.
 
@@ -6,12 +18,14 @@ Your [Total.js Code](https://github.com/totaljs/code) instances in an app of the
 
 ## Download
 
-Every version is in [Releases](https://github.com/totaljs-es/code-app/releases), with the SHA-256 of each file:
+The latest version, straight from [Releases](https://github.com/totaljs-es/code-app/releases/latest), where every file has its SHA-256:
 
-| System | File |
-| --- | --- |
-| Windows 10 and 11 | `TotalJSCode-<version>-windows-x64-setup.exe` (or the `.msi`) |
-| Linux | `.deb` (Debian, Ubuntu), `.rpm` (Fedora, openSUSE) or `.AppImage` |
+| System | x64 (Intel, AMD) | ARM64 |
+| --- | --- | --- |
+| Windows 10 and 11 | [Installer (.exe)](https://github.com/totaljs-es/code-app/releases/latest/download/TotalJSCode-windows-x64-setup.exe) · [MSI](https://github.com/totaljs-es/code-app/releases/latest/download/TotalJSCode-windows-x64.msi) | [Installer (.exe)](https://github.com/totaljs-es/code-app/releases/latest/download/TotalJSCode-windows-arm64-setup.exe) |
+| Debian, Ubuntu | [.deb](https://github.com/totaljs-es/code-app/releases/latest/download/TotalJSCode-linux-amd64.deb) | [.deb](https://github.com/totaljs-es/code-app/releases/latest/download/TotalJSCode-linux-arm64.deb) |
+| Fedora, openSUSE | [.rpm](https://github.com/totaljs-es/code-app/releases/latest/download/TotalJSCode-linux-x86_64.rpm) | [.rpm](https://github.com/totaljs-es/code-app/releases/latest/download/TotalJSCode-linux-aarch64.rpm) |
+| Any Linux | [AppImage](https://github.com/totaljs-es/code-app/releases/latest/download/TotalJSCode-linux-x86_64.AppImage) | [AppImage](https://github.com/totaljs-es/code-app/releases/latest/download/TotalJSCode-linux-aarch64.AppImage) |
 
 **Windows:** the installer is not signed yet. The first time, SmartScreen says that it protected your PC: choose **More info → Run anyway**. It installs for your user only.
 
@@ -51,7 +65,7 @@ npm run build      # the installers of this system, in src-tauri/target/release/
 ## Releasing
 
 1. Change `version` in `package.json` and add it to `CHANGELOG.md`.
-2. Commit, tag `v<version>` and push the tag. The `Release` workflow tests, builds Windows and Linux and publishes the release with the SHA-256 of each file.
+2. Commit, tag `v<version>` and push the tag. The `Release` workflow tests, builds Windows and Linux (x64 and ARM64) and publishes the release with the SHA-256 of each file.
 
 ## License
 

@@ -1,6 +1,6 @@
 name: Release
 
-# A version tag (v1.0.0, the version of package.json) builds the app for Windows and Linux and publishes them in a GitHub
+# A version tag (v1.0.0, the version of package.json) builds the app for Windows and Linux (x64 and ARM64) and publishes them in a GitHub
 # release with their SHA-256. Nothing is built on a personal machine: the release is the build of this tag.
 # Windows is not signed yet (see README.md, Code signing).
 # Run by hand from the Actions tab (or gh workflow run release.yml), it builds everything and keeps the files as artifacts
@@ -33,9 +33,19 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev
       - run: cargo test --manifest-path src-tauri/Cargo.toml
 
+  # The files keep the same names in every release, so that releases/latest/download/<file> always gives the latest one.
   windows:
     needs: check
     runs-on: windows-latest
+    strategy:
+      matrix:
+        include:
+          - arch: x64
+            target: x86_64-pc-windows-msvc
+            bundles: nsis,msi
+          - arch: arm64
+            target: aarch64-pc-windows-msvc
+            bundles: nsis
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -43,25 +53,38 @@ jobs:
           node-version: 22
           cache: npm
       - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: src-tauri
+          key: ${{ matrix.target }}
       - run: npm ci
-      - run: npx tauri build --bundles nsis,msi
-      - name: Name the installers after the version
+      - run: npx tauri build --target ${{ matrix.target }} --bundles ${{ matrix.bundles }}
+      - name: Name the installers
         shell: bash
         run: |
           mkdir out
-          cp src-tauri/target/release/bundle/nsis/*.exe "out/TotalJSCode-${{ needs.check.outputs.version }}-windows-x64-setup.exe"
-          cp src-tauri/target/release/bundle/msi/*.msi "out/TotalJSCode-${{ needs.check.outputs.version }}-windows-x64.msi"
+          bundle=src-tauri/target/${{ matrix.target }}/release/bundle
+          cp $bundle/nsis/*.exe "out/TotalJSCode-windows-${{ matrix.arch }}-setup.exe"
+          if [ -d $bundle/msi ]; then cp $bundle/msi/*.msi "out/TotalJSCode-windows-${{ matrix.arch }}.msi"; fi
       - uses: actions/upload-artifact@v7
         with:
-          name: windows
+          name: windows-${{ matrix.arch }}
           path: out/*
 
   linux:
     needs: check
-    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        include:
+          - runner: ubuntu-22.04
+            deb: amd64
+            rpm: x86_64
+          - runner: ubuntu-22.04-arm
+            deb: arm64
+            rpm: aarch64
+    runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -76,15 +99,15 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev patchelf
       - run: npm ci
       - run: npx tauri build --bundles deb,rpm,appimage
-      - name: Name the packages after the version
+      - name: Name the packages
         run: |
           mkdir out
-          cp src-tauri/target/release/bundle/deb/*.deb "out/TotalJSCode-${{ needs.check.outputs.version }}-linux-amd64.deb"
-          cp src-tauri/target/release/bundle/rpm/*.rpm "out/TotalJSCode-${{ needs.check.outputs.version }}-linux-x86_64.rpm"
-          cp src-tauri/target/release/bundle/appimage/*.AppImage "out/TotalJSCode-${{ needs.check.outputs.version }}-linux-x86_64.AppImage"
+          cp src-tauri/target/release/bundle/deb/*.deb "out/TotalJSCode-linux-${{ matrix.deb }}.deb"
+          cp src-tauri/target/release/bundle/rpm/*.rpm "out/TotalJSCode-linux-${{ matrix.rpm }}.rpm"
+          cp src-tauri/target/release/bundle/appimage/*.AppImage "out/TotalJSCode-linux-${{ matrix.rpm }}.AppImage"
       - uses: actions/upload-artifact@v7
         with:
-          name: linux
+          name: linux-${{ matrix.deb }}
           path: out/*
 
   release:
