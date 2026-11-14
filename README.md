@@ -24,10 +24,6 @@ Every version is in [Releases](https://github.com/totaljs-es/code-app/releases),
 - **Import / Export** of the list, to move your instances to another computer.
 - **View → Developer tools** (F12) and **Reload** (Ctrl+R).
 
-## How Code knows it is in the app
-
-Total.js Code turns on its desktop options when `navigator.userAgent` includes `TotalDesktop` and `window.require` exists (`views/index.html` of totaljs/code). Before Code loads, the app gives its pages exactly that (`src/bridge.js`): a `window.require` with the parts of `electron`, `fs`, `path`, `os`, `url`, `http` and `https` that Code uses, which the app carries out itself.
-
 ## Security
 
 The pages of Code get only what they need for the local copy, never the rest of the disk:
