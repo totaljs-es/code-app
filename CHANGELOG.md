@@ -1,6 +1,6 @@
 # Changelog
 
-## Next
+## 1.0.1 — 2026-11-14
 
 - Builds for ARM64 too (Windows and Linux), and the files of every release keep the same names, so the download links always give the latest version.
 

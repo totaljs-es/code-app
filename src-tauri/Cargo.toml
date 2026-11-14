@@ -1,6 +1,6 @@
 [package]
 name = "code-app"
-version = "1.0.0"
+version = "1.0.1"
 description = "Total.js Code: your Code instances in an app of their own"
 authors = ["Spanish Total.js Platform"]
 license = "MIT"
