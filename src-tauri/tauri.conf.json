@@ -22,7 +22,7 @@
     "category": "DeveloperTool",
     "shortDescription": "Your Total.js Code instances in an app of their own",
     "longDescription": "Total.js Code opens your Total.js Code instances in windows of their own and keeps a local copy of their files in the folders you choose, as the Electron app of Code did, in a fraction of its size.",
-    "homepage": "https://totaldesktop.totaljs.es",
+    "homepage": "https://totaldesktop.totaljs.es/totalcode/",
     "license": "MIT",
     "icon": [
       "icons/32x32.png",

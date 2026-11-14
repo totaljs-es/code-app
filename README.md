@@ -1,6 +1,8 @@
 # Total.js Code app
 
-Your [Total.js Code](https://github.com/totaljs/code) instances in an app of their own, for **Windows** and **Linux**: each instance opens in a window of its own, and Code keeps a local copy of its files in the folder you choose. The successor of [code-electron](https://github.com/totaljs/code-electron), built with Tauri, at a small fraction of its size. On the Mac, the same app is TotalCode, part of [TotalDesktop](https://totaldesktop.totaljs.es).
+Your [Total.js Code](https://github.com/totaljs/code) instances in an app of their own, for **Windows** and **Linux**: each instance opens in a window of its own, and Code keeps a local copy of its files in the folder you choose. The successor of [code-electron](https://github.com/totaljs/code-electron), built with Tauri, at a small fraction of its size. On the Mac and iPad, the same app is TotalCode, part of [TotalDesktop](https://totaldesktop.totaljs.es).
+
+**Website:** [totaldesktop.totaljs.es/totalcode](https://totaldesktop.totaljs.es/totalcode/) · **Privacy policy:** [totaldesktop.totaljs.es/totalcode/privacy](https://totaldesktop.totaljs.es/totalcode/privacy/)
 
 ## Download
 
@@ -33,7 +35,7 @@ The Electron app gave the pages of Code the whole of Node.js, and with it the wh
 - Code sees the folder of the instance as `/local`. Every path is resolved inside the real folder after `..`, following symlinks, so nothing outside it can be read or written (`src-tauri/src/bridge.rs`, with tests).
 - The pages of an instance can call only those file commands, only from its address and only in its windows; the list of instances and everything else is out of their reach.
 - Downloads with the session cookie of Code go only to the instance itself.
-- No tracking: the Electron app sent a visit to an analytics service on every start; this one talks only to your instances.
+- No tracking: the Electron app sent a visit to an analytics service on every start; this one talks only to your instances. See the [privacy policy](https://totaldesktop.totaljs.es/totalcode/privacy/).
 
 ## Development
 

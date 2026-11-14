@@ -437,6 +437,7 @@ fn menu(app: &AppHandle) -> tauri::Result<tauri::menu::Menu<tauri::Wry>> {
 		&[
 			&MenuItem::with_id(app, "docs", "Total.js Code documentation", true, None::<&str>)?,
 			&MenuItem::with_id(app, "source", "This app on GitHub", true, None::<&str>)?,
+			&MenuItem::with_id(app, "privacy", "Privacy policy", true, None::<&str>)?,
 		],
 	)?;
 	Menu::with_items(app, &[&main, &edit, &view, &help])
@@ -490,6 +491,9 @@ pub fn run() {
 			}
 			"docs" => {
 				let _ = app.opener().open_url("https://docs.totaljs.com/code/", None::<&str>);
+			}
+			"privacy" => {
+				let _ = app.opener().open_url("https://totaldesktop.totaljs.es/totalcode/privacy/", None::<&str>);
 			}
 			"source" => {
 				let _ = app.opener().open_url("https://github.com/totaljs-es/code-app", None::<&str>);
