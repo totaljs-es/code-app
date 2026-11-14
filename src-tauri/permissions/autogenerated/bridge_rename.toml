@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-bridge-rename"
+description = "Enables the bridge_rename command without any pre-configured scope."
+commands.allow = ["bridge_rename"]
+
+[[permission]]
+identifier = "deny-bridge-rename"
+description = "Denies the bridge_rename command without any pre-configured scope."
+commands.deny = ["bridge_rename"]

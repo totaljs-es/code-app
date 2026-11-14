@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-electron-export"
+description = "Enables the electron_export command without any pre-configured scope."
+commands.allow = ["electron_export"]
+
+[[permission]]
+identifier = "deny-electron-export"
+description = "Denies the electron_export command without any pre-configured scope."
+commands.deny = ["electron_export"]

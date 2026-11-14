@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Total.js Code",
+  "mainBinaryName": "totaljs-code",
+  "version": "../package.json",
+  "identifier": "es.totaljs.code.client",
+  "build": {
+    "frontendDist": "../src"
+  },
+  "app": {
+    "withGlobalTauri": false,
+    "windows": [],
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src ipc: http://ipc.localhost"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis", "msi", "deb", "appimage", "rpm", "dmg"],
+    "publisher": "Spanish Total.js Platform",
+    "copyright": "© 2026 Spanish Total.js Platform",
+    "category": "DeveloperTool",
+    "shortDescription": "Your Total.js Code instances in an app of their own",
+    "longDescription": "Total.js Code opens your Total.js Code instances in windows of their own and keeps a local copy of their files in the folders you choose, as the Electron app of Code did, in a fraction of its size.",
+    "homepage": "https://totaldesktop.totaljs.es",
+    "license": "MIT",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser"
+      },
+      "wix": {
+        "language": ["en-US"]
+      }
+    },
+    "linux": {
+      "deb": { "section": "devel" }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "launcher",
+  "description": "The list of Code instances (the page of the app). The pages of an instance get their own capability at run time.",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "allow-projects-list",
+    "allow-project-save",
+    "allow-project-remove",
+    "allow-projects-order",
+    "allow-project-open",
+    "allow-project-ping",
+    "allow-choose-folder",
+    "allow-electron-import",
+    "allow-electron-export"
+  ]
+}

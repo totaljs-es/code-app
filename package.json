@@ -1,0 +1,16 @@
+{
+  "name": "code-app",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Total.js Code for Windows and Linux: your Code instances in an app of their own, with local sync of files",
+  "license": "MIT",
+  "scripts": {
+    "tauri": "tauri",
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "test": "cargo test --manifest-path src-tauri/Cargo.toml"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.12.4"
+  }
+}

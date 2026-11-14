@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-bridge-readdir"
+description = "Enables the bridge_readdir command without any pre-configured scope."
+commands.allow = ["bridge_readdir"]
+
+[[permission]]
+identifier = "deny-bridge-readdir"
+description = "Denies the bridge_readdir command without any pre-configured scope."
+commands.deny = ["bridge_readdir"]

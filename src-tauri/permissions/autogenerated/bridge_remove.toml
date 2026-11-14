@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-bridge-remove"
+description = "Enables the bridge_remove command without any pre-configured scope."
+commands.allow = ["bridge_remove"]
+
+[[permission]]
+identifier = "deny-bridge-remove"
+description = "Denies the bridge_remove command without any pre-configured scope."
+commands.deny = ["bridge_remove"]

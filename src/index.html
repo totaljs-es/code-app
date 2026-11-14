@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="color-scheme" content="dark light" />
+		<title>Total.js Code</title>
+		<link rel="stylesheet" href="app.css" />
+	</head>
+	<body>
+		<header class="top">
+			<div class="brand"><img src="icon.png" width="36" height="36" alt="" /><div><strong>Total.js Code</strong><span>Your Code instances</span></div></div>
+			<input id="search" type="search" placeholder="Search" aria-label="Search the instances" autocomplete="off" />
+			<button type="button" class="ghost" data-do="transfer">Import / Export</button>
+			<button type="button" class="primary" data-do="add">Add instance</button>
+		</header>
+		<main>
+			<ul id="list" class="list" aria-label="Code instances"></ul>
+			<div id="empty" class="empty" hidden>
+				<img src="icon.png" width="72" height="72" alt="" />
+				<h1>Add your first Code instance</h1>
+				<p>Enter the address of a Total.js Code instance. Each one opens in a window of its own, and Code can keep a local copy of its files in a folder you choose.</p>
+				<p class="muted">Coming from the Electron app? Export the list there and import it here.</p>
+				<div class="row"><button type="button" class="primary" data-do="add">Add instance</button><button type="button" class="ghost" data-do="transfer">Import</button></div>
+			</div>
+		</main>
+
+		<dialog id="form" aria-labelledby="form-title">
+			<form method="dialog" novalidate>
+				<h2 id="form-title">Code instance</h2>
+				<label for="f-name">Name</label>
+				<input id="f-name" name="name" maxlength="60" placeholder="Work" required />
+				<label for="f-url">Address</label>
+				<input id="f-url" name="url" type="url" inputmode="url" autocapitalize="off" spellcheck="false" placeholder="https://code.example.com" required />
+				<label for="f-folder">Folder for the local copy <span class="muted">(optional)</span></label>
+				<div class="folder"><input id="f-folder" name="folder" readonly placeholder="No folder" /><button type="button" class="ghost" data-do="pick">Choose…</button><button type="button" class="ghost icon" data-do="unpick" aria-label="No folder">×</button></div>
+				<p class="help">Code saves files here when you choose Save locally, or always if you turn that on in your Code account. Each repository gets its own subfolder.</p>
+				<p id="form-error" class="error" role="alert"></p>
+				<div class="row end"><button type="button" class="ghost" data-do="close">Cancel</button><button type="submit" class="primary" data-do="save">Save</button></div>
+			</form>
+		</dialog>
+
+		<dialog id="transfer" aria-labelledby="transfer-title">
+			<form method="dialog" novalidate>
+				<h2 id="transfer-title">Import / Export</h2>
+				<p class="help">Paste the export of the Electron app of Code (or of this app) to add its instances. The export below has your list, to move it to another computer.</p>
+				<textarea id="t-data" rows="7" spellcheck="false" aria-label="Export"></textarea>
+				<p id="transfer-error" class="error" role="alert"></p>
+				<div class="row end"><button type="button" class="ghost" data-do="close">Close</button><button type="button" class="ghost" data-do="copy">Copy export</button><button type="button" class="primary" data-do="import">Import</button></div>
+			</form>
+		</dialog>
+
+		<dialog id="confirm" aria-labelledby="confirm-text">
+			<form method="dialog">
+				<p id="confirm-text"></p>
+				<div class="row end"><button type="button" class="ghost" data-do="close">Cancel</button><button type="button" class="danger" data-do="remove">Remove</button></div>
+			</form>
+		</dialog>
+
+		<div id="toast" class="toast" role="status" aria-live="polite"></div>
+		<script src="app.js"></script>
+	</body>
+</html>
